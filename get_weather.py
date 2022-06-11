@@ -16,7 +16,6 @@ conf.read('/home/pi/display/weather/config.ini')
 #getting the API key and cities
 OWM_API_key = conf['WEATHER']['OWM_API_key']
 cities = conf['WEATHER'].getlist('cities')
-# data_folder = conf['WEATHER']['data_folder']
 data_folder = '/home/pi/display/weather/data/'
 
 #preparing the url for further usage (adding the api in it)
@@ -30,7 +29,6 @@ async def get_weather(session, url):
         return local_weather
 
 #main async magic thingy
-#async & await => splitting the workload as coroutine (running concurrently)
 async def main():
     #setting up a session for the fetcher (getweather())
     async with aiohttp.ClientSession() as session:
