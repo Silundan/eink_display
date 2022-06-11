@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-#For more info on async : https://docs.python.org/3/library/asyncio-task.html
-#Info are vaild as of 25-Mar-22, and built on python 3.9.7 (docs online are for python 3.10.4)
 import aiohttp
 import asyncio
 import json
@@ -43,18 +41,13 @@ async def main():
             #generating the url for fetcher
             url = base_url + city
             #assign tasks to fetcher in async
-            #ensure_future is ???????
             tasks.append(asyncio.ensure_future(get_weather(session, url)))
 
-        #gathering the results from tasks <- individual get_weather() running in async
-        #From python.org doc :
-        #If all awaitables are completed successfully,
-        #the result is an aggregate list of returned values. The order of result values corresponds to the order of awaitables in aws.
         weather_response = await asyncio.gather(*tasks)
         #a counter to be added as a prefix of the file name, so that gui script can sort them and show it as the order user input
         counter = 0
 
-        #purging the old weather data, in case the users changed their mind
+        #purging the old weather data, in case the users changed cities
         weather_file_path = data_folder + "*.json"
         for jsonpath in glob.iglob(weather_file_path):
             try:
