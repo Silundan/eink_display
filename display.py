@@ -103,10 +103,8 @@ async def foo(msg):
 
         if (quarter % n == 0):
             t = loop_action(pick_mod)
-            # GPIO.cleanup()
         elif ((quarter-1) % n == 0) and (quarter-last_quarter == 2):
             t = loop_action(pick_mod)
-            # GPIO.cleanup()
         else:
             pass
 
@@ -162,13 +160,9 @@ def button_A(where):
 
                 out_txt.append(p)
 
-        # inky = auto(ask_user=True, verbose=True)
-        # inky.set_border(inky.BLACK)
         w = inky.WIDTH
         h = inky.HEIGHT
 
-        # with open(weather_icon+"base.png", "rb") as base:
-        #     img = Image.open(base)
         img = Image.new("P", (w, h), inky.WHITE)
         header_font = ImageFont.truetype(FredokaOne, 40)
         font = ImageFont.truetype(FredokaOne, 26)
@@ -178,11 +172,6 @@ def button_A(where):
         w_h = h - font.getsize("ABCD ")[1] # ____.getsize() : [0] for width, [1] for height
         h3 = w_h / 3
         w_hh = header_font.getsize("ABCD ")[1] #get header font height
-
-        # draw.rectangle((0, 0, w, h3), fill=inky.GREEN) #First city
-        # draw.rectangle((0, h3, w, h3 * 2), fill=inky.BLUE) #Second city
-        # draw.rectangle((0, (h3 * 2), w , w_h), fill=inky.RED) #Third city
-        # draw.rectangle((0, w_h, w , h), fill=inky.BLACK) #Update timestamp
 
         draw.line((5, h3, w-5, h3), fill=inky.BLUE, width=2)
         draw.line((5, h3*2, w-5, h3*2), fill=inky.GREEN, width=2)
@@ -210,8 +199,6 @@ def button_A(where):
             with open(details[2], "rb") as icoo:
                 icon = Image.open(icoo)
                 icon = icon.convert("P")
-                # icon = Image.open(details[2])
-                # img.paste(icon, (5, int(y+w_hh+w_h), 37, int(y+w_hh+w_h+32)))
                 img.paste(icon, (5, int(y+w_hh+w_h)), icon)
             draw.text((5,y), details[0], disp_col[i], header_font) # City name
             draw.text((5,y+w_hh), details[1], disp_col[i], font) # timezone in GMT
@@ -265,9 +252,6 @@ def button_D(where):
         pass
     else:
         img_list.sort()
-
-        # inky = auto(ask_user=True, verbose=True)
-        # inky.set_border(inky.BLACK)
 
         new_pic = random.choice(img_list)
         while new_pic == last_pic:
