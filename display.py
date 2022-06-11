@@ -10,15 +10,10 @@ import json
 import random
 import asyncio
 import datetime
-# import configparser
 from PIL import Image, ImageDraw, ImageFont
 from font_fredoka_one import FredokaOne
 from inky.auto import auto
 from inky.inky_uc8159 import CLEAN
-
-# Loading from config
-# conf = configparser.ConfigParser(converters={'list': lambda x: [i.strip() for i in x.split(';')]})
-# conf.read('/home/pi/display/weather/config.ini')
 
 img_path = "/home/pi/display/img/"
 weather_path = "/home/pi/display/weather/"
