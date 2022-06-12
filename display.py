@@ -191,10 +191,6 @@ def button_A(where):
             elif i == 2:
                 y = h3 * 2
             print(details[2])
-            with open(details[2], "rb") as icoo:
-                icon = Image.open(icoo)
-                icon = icon.convert("P")
-                img.paste(icon, (5, int(y+w_hh+w_h)), icon)
             draw.text((5,y), details[0], disp_col[i], header_font) # City name
             draw.text((5,y+w_hh), details[1], disp_col[i], font) # timezone in GMT
             draw.text((c + 20, (y + 10)), out_txt[i], fill=disp_col[i], font=font, align="left")
