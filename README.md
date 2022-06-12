@@ -20,7 +20,7 @@ The third button (Button C) is clear function from the [inky library](https://gi
 The bottom button (Button D) is the random photo display function (picking photos from `./img/` by default).
 
 ## Preparation
-Note: I am using Raspberry Pi Zero W for my setup, with ZRAM installed and planning to move the weather data to ram drive later to pro-long the SD card's life span...
+Note: I am using Raspberry Pi Zero W for my setup, with ZRAM installed and planning to move the weather data to ram drive later to prolong the SD card's life span...
 
 The scripts are built based on Python 3 with raspberry pi OS buster Lite (32 bit), as I am using RPi Zero. Picking lite version of the OS as I will be running it in headless configuration, I can always access it via SSH.
 
