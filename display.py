@@ -278,7 +278,6 @@ for pin in BUTTONS:
     GPIO.add_event_detect(pin, GPIO.FALLING, handle_button, bouncetime=250)
 
 loop = asyncio.run(foo("loop"))
-# start_loop = asyncio.loop.call_later(20, foo("recall"))
 # Finally, since button handlers don't require a "while True" loop,
 # we pause the script to prevent it exiting immediately.
 signal.pause()
