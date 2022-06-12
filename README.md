@@ -31,7 +31,7 @@ pip3 install inky[rpi,example-depends]
 
 **Installing aiohttp:**
 ```
-pip install aiohttp
+pip3 install aiohttp
 ```
 
 **Install git on your system:**
