@@ -12,11 +12,11 @@ start_time = time.time()
 
 #reading the config, seperating items with ; - for the cities
 conf = configparser.ConfigParser(converters={'list': lambda x: [i.strip() for i in x.split(';')]})
-conf.read('/home/pi/display/weather/config.ini')
+conf.read('/home/pi/eink_display/weather/config.ini')
 #getting the API key and cities
 OWM_API_key = conf['WEATHER']['OWM_API_key']
 cities = conf['WEATHER'].getlist('cities')
-data_folder = '/home/pi/display/weather/data/'
+data_folder = '/home/pi/eink_display/weather/data/'
 
 #preparing the url for further usage (adding the api in it)
 base_url = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=' + OWM_API_key + '&q='
