@@ -15,8 +15,8 @@ from font_fredoka_one import FredokaOne
 from inky.auto import auto
 from inky.inky_uc8159 import CLEAN
 
-img_path = "/home/pi/display/img/"
-weather_path = "/home/pi/display/weather/"
+img_path = "/home/pi/eink_display/img/"
+weather_path = "/home/pi/eink_display/weather/"
 weather_data = weather_path+"data/"
 weather_icon = weather_path+"icons/"
 gc.enable()
