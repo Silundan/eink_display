@@ -3,7 +3,7 @@ Small scripts to display weather details and random images with raspberry pi and
 
 This is a just-for-fun and practice project for myself as I am learning python and linux, and I wanted an e-ink meme display, and sometimes showing the weather. As this is a hobby project and I am no professional programmer, the codes are a bit speghatti, hopefully I will be improving on the codes later in my journey of programming. :)
 
-And i still have a button unused, will be expanding on it later if I have some more idea to make a good use of it. And the refresh rate of the panel is ~30 secs for a full refersh, using it as a clock is kinda pointless...
+And i still have a button unused, will be expanding on it later if I have some more idea to make a good use of it. And the refresh rate of the panel is \~30 secs for a full refersh, using it as a clock is kinda pointless...
 
 ## Hardware list
 - Raspberry Pi (Any model with 40-pin GPIO is fine)
@@ -33,6 +33,11 @@ Enable I2C and SPI with raspberry pi config: `sudo raspi-config`
 Installing python library for Inky (instruction from their [GitHub](https://github.com/pimoroni/inky))
 ```
 pip3 install inky[rpi,example-depends]
+```
+
+**Installing aiohttp:**
+```
+pip install aiohttp
 ```
 
 **Install git on your system:**
