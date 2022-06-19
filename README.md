@@ -9,7 +9,7 @@ Weather icon font is made by [Alessio Atzeni](https://www.alessioatzeni.com/), y
 
 ## Hardware list
 - Raspberry Pi (Any model with 40-pin GPIO is fine)
-- Inky Impression 5.7" (7 colour ePaper/eInk HAT) from Pimoroni
+- Inky Impression 5.7" (7 colour ePaper/eInk HAT) from [Pimoroni](https://shop.pimoroni.com/products/inky-impression-5-7)
 
 ## Default settings
 
