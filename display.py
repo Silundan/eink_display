@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding:utf-8 -*-
 
 import signal
 import RPi.GPIO as GPIO
@@ -10,15 +11,22 @@ import json
 import random
 import asyncio
 import datetime
+import configparser
 from PIL import Image, ImageDraw, ImageFont
 from font_fredoka_one import FredokaOne
 from inky.auto import auto
 from inky.inky_uc8159 import CLEAN
 
-img_path = "/home/pi/eink_display/img/"
-weather_path = "/home/pi/eink_display/weather/"
-weather_data = weather_path+"data/"
-weather_icon = weather_path+"icons/"
+Loading from config
+conf = configparser.ConfigParser(converters={'list': lambda x: [i.strip() for i in x.split(';')]})
+conf.read('/home/pi/eink_display/weather/config.ini')
+
+project_folder = conf['WEATHER']['project_folder']
+img_path = project_folder + "img/"
+weather_path = project_folder + "weather/"
+weather_data = weather_path + "data/"
+weather_icon = weather_path + "icons/"
+
 gc.enable()
 pick_mod = "D"
 label = ""
@@ -30,6 +38,29 @@ BUTTONS = [5, 6, 16, 24]
 
 # These correspond to buttons A, B, C and D respectively
 LABELS = ['A', 'B', 'C', 'D']
+
+ICON = {
+"01d":"B",
+"01n":"C",
+"02d":"H",
+"02n":"I",
+"03d":"N",
+"03n":"N",
+"04d":"Y",
+"04n":"Y",
+"09d":"Q",
+"09n":"Q",
+"10d":"R",
+"10n":"R",
+"11d":"O",
+"11n":"O",
+"13d":"W",
+"13n":"W",
+"50d":"J",
+"50n":"K",
+"base":")",
+"unknown":")"
+}
 
 # Set up RPi.GPIO with the "BCM" numbering scheme
 GPIO.setmode(GPIO.BCM)
@@ -145,8 +176,7 @@ def button_A(where):
 
                 cities_weather.append(data)
                 timezone = cities_weather[i]['timezone']
-                ico = cities_weather[i]['weather'][0]['icon']
-                oc = f"{cities_weather[i]['name']}\nGMT {['', '+'][timezone>0]}{(timezone/3600)}\n"+weather_icon+ico+".png"
+                oc = f"{cities_weather[i]['name']}\nGMT {['', '+'][timezone>0]}{(timezone/3600)}\n{cities_weather[i]['weather'][0]['icon']}"
                 out_city.append(oc)
 
                 p = (f"Temp  {cities_weather[i]['main']['temp']:.1f} ({cities_weather[i]['main']['temp_min']:.1f} ~ {cities_weather[i]['main']['temp_max']:.1f})\n")
@@ -161,12 +191,14 @@ def button_A(where):
         img = Image.new("P", (w, h), inky.WHITE)
         header_font = ImageFont.truetype(FredokaOne, 40)
         font = ImageFont.truetype(FredokaOne, 26)
+        icon_font = ImageFont.truetype(project_folder+"meteocons.ttf", 60)
         draw = ImageDraw.Draw(img)
 
         # width, height = font.getsize(out)  # Width and height of quote
         w_h = h - font.getsize("ABCD ")[1] # ____.getsize() : [0] for width, [1] for height
         h3 = w_h / 3
         w_hh = header_font.getsize("ABCD ")[1] #get header font height
+        w_hhh = font.getsize("ABCD ")[1]
 
         draw.line((5, h3, w-5, h3), fill=inky.BLUE, width=2)
         draw.line((5, h3*2, w-5, h3*2), fill=inky.GREEN, width=2)
@@ -190,12 +222,13 @@ def button_A(where):
                 y = h3
             elif i == 2:
                 y = h3 * 2
-            print(details[2])
+            
             draw.text((5,y), details[0], disp_col[i], header_font) # City name
             draw.text((5,y+w_hh), details[1], disp_col[i], font) # timezone in GMT
-            draw.text((c + 20, (y + 10)), out_txt[i], fill=disp_col[i], font=font, align="left")
-
-        draw.text((5,w_h), last_mod, inky.BLACK, font)
+            val_y = y+w_hh+w_hhh
+            draw.text((5, int(val_y)), ICON[details[2]], disp_col[i], icon_font)
+            draw.text((c + 20, (y + 10)), out_txt[i], fill=disp_col[i], font=font, align="left") # details on the right (temp, feels like, etc.)
+            draw.text((5,w_h), last_mod, inky.BLACK, font)
 
     inky.set_image(img)
     inky.show()
