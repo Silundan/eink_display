@@ -5,6 +5,8 @@ This is a just-for-fun and practice project for myself as I am learning python a
 
 And i still have a button unused, will be expanding on it later if I have some more idea to make a good use of it. And the refresh rate of the panel is \~30 secs for a full refersh, using it as a clock is kinda pointless...
 
+Weather icon font is made by [Alessio Atzeni](https://www.alessioatzeni.com/), you can check the original file [here]([https://www.alessioatzeni.com/](https://www.alessioatzeni.com/meteocons/).
+
 ## Hardware list
 - Raspberry Pi (Any model with 40-pin GPIO is fine)
 - Inky Impression 5.7" (7 colour ePaper/eInk HAT) from Pimoroni
