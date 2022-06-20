@@ -17,7 +17,7 @@ from font_fredoka_one import FredokaOne
 from inky.auto import auto
 from inky.inky_uc8159 import CLEAN
 
-Loading from config
+# Loading from config
 conf = configparser.ConfigParser(converters={'list': lambda x: [i.strip() for i in x.split(';')]})
 conf.read('/home/pi/eink_display/weather/config.ini')
 
