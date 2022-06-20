@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 
-#For more info on async : https://docs.python.org/3/library/asyncio-task.html
-#Info are vaild as of 25-Mar-22, and built on python 3.9.7 (docs online are for python 3.10.4)
 import aiohttp
 import asyncio
 import json
@@ -25,14 +23,11 @@ data_folder = conf['WEATHER']['project_folder'] + "weather/data/"
 base_url = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=' + OWM_API_key + '&q='
 
 #async magic require session & url to work
-#fetching the response json for each city (in async) and passing it back to main()
 async def get_weather(session, url):
     async with session.get(url) as response:
         local_weather = await response.json()
         return local_weather
 
-#main async magic thingy
-#async & await => splitting the workload as coroutine (running concurrently)
 async def main():
     #setting up a session for the fetcher (getweather())
     async with aiohttp.ClientSession() as session:
@@ -42,16 +37,9 @@ async def main():
         for city in cities:
             #generating the url for fetcher
             url = base_url + city
-            #assign tasks to fetcher in async
-            #ensure_future is ???????
             tasks.append(asyncio.ensure_future(get_weather(session, url)))
 
-        #gathering the results from tasks <- individual get_weather() running in async
-        #From python.org doc :
-        #If all awaitables are completed successfully,
-        #the result is an aggregate list of returned values. The order of result values corresponds to the order of awaitables in aws.
         weather_response = await asyncio.gather(*tasks)
-        #a counter to be added as a prefix of the file name, so that gui script can sort them and show it as the order user input
         counter = 0
 
         #purging the old weather data, in case the users changed their mind
