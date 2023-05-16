@@ -28,7 +28,7 @@ Enable I2C and SPI with raspberry pi config: `sudo raspi-config`
 
 Installing python library for Inky (instruction from their [GitHub](https://github.com/pimoroni/inky))
 ```
-pip3 install inky[rpi,example-depends]
+curl https://get.pimoroni.com/inky | bash
 ```
 
 **Installing aiohttp:**
