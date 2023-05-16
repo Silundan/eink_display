@@ -51,7 +51,7 @@ git clone https://github.com/Silundan/eink_display.git
 After that, go to the `project/weather` folder, and edit the content of `config.ini`.
 In most cases it can be done with the following command:
 ```
-sudo cd /home/pi/eink_display/weather
+cd /home/pi/eink_display/weather
 nano config.ini
 ```
 You will have to get a free API key from [Open Weather Map](https://openweathermap.org/).
